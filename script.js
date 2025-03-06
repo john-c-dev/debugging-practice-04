@@ -26,7 +26,7 @@ const products = [
         name: "Coffee Maker",
         price: 49.99,
         category: "home",
-        image: "https://images.unsplash.com/photo-1570347929626-114d0a8023fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+        image: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
     },
     {
         id: 5,
@@ -47,7 +47,7 @@ const products = [
         name: "Blender",
         price: 29.99,
         category: "home",
-        image: "https://images.unsplash.com/photo-1659540053924-b0600247b6e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+        image: "https://images.unsplash.com/photo-1542272604-787c3835535d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
     },
     {
         id: 8,
@@ -77,7 +77,7 @@ function displayProducts(productsToDisplay) {
     
     productsToDisplay.forEach(product => {
         const productCard = document.createElement('div');
-        productCard.classname = 'product-card';
+        productCard.className = 'product-card';
         
         productCard.innerHTML = `
             <img src="${product.image}" alt="${product.name}" class="product-image">
@@ -106,10 +106,9 @@ function filterProducts() {
     if (category === 'all') {
         filteredProducts = [...products];
     } else {
-        filteredProducts = products.filter(product => product.category = category);
+        filteredProducts = filteredProducts.filter(product => product.category === category);
     }
     
-    displayProducts(filteredProducts);
     // Also apply current sort if any
     sortProducts();
 }
@@ -117,17 +116,16 @@ function filterProducts() {
 // Sort products
 function sortProducts() {
     const sortBy = document.getElementById('sort-by').value;
-    let sortedProducts = [...filteredProducts];
     
     switch(sortBy) {
         case 'price-asc':
-            sortedProducts.sort((a, b) => a.price - b.price);
+            filteredProducts.sort((a, b) => a.price - b.price);
             break;
         case 'price-desc':
-            sortedProducts.sort((a, b) => b.price - a.price);
+            filteredProducts.sort((a, b) => b.price - a.price);
             break;
         case 'name-asc':
-            sortedProducts.sort((a, b) => {
+            filteredProducts.sort((a, b) => {
                 if (a.name < b.name) return -1;
                 if (a.name > b.name) return 1
                 return 0;
@@ -135,10 +133,10 @@ function sortProducts() {
             break;
         default:
             // Default sort (by id)
-            sortedProducts.sort((a, b) => a.id - b.id);
+            filteredProducts.sort((a, b) => a.id - b.id);
     }
     
-    displayProducts(sortedProducts);
+    displayProducts(filteredProducts);
 }
 
 // Search products
@@ -154,9 +152,9 @@ function searchProducts() {
         );
     }
     
-    displayProducts(filteredProducts);
     // Reset category filter
     document.getElementById('category-filter').value = 'all';
+    sortProducts()
 }
 
 // Add to cart
