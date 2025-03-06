@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Catalog - Debug Practice</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Product Catalog</h1>
+        <div class="cart-container">
+            <span class="cart-icon">🛒</span>
+            <span id="cart-count">0<span>
+        </div>
+    </header>
+
+    <div class="controls-container">
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search products...">
+            <button onclick="searchProducts()">Search</button>
+        </div>
+
+        <div class="filter-container">
+            <label for="category-filter">Filter by category:</label>
+            <select id="category-filter">
+                <option value="all">All Categories</option>
+                <option value="electronics">Electronics</option>
+                <option value="clothing">Clothing</option>
+                <option value="books">Books</option>
+                <option value="home">Home & Kitchen</option>
+            </select>
+        </div>
+
+        <div class="sort-container">
+            <label for="sort-by">Sort by:</label>
+            <select id="sort-by">
+                <option value="default">Default</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+                <option value="name-asc">Name: A to Z</option>
+            </select>
+        <div>
+    </div>
+
+    <main>
+        <div class="product-container" id="product-container">
+            <!-- Products will be added here by JavaScript -->
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Product Catalog - Debug Practice</p>
+    </footer>
+</body>
+</html>
